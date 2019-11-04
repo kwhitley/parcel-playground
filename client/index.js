@@ -1,7 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, h } from './react-shim'
+import './styles/app.scss'
+import App from './App'
 
-ReactDOM.render(
-  <h1>Hello World!</h1>,
-  document.getElementById('root')
-);
+render(<App />, document.body)

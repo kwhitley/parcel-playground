@@ -4,11 +4,12 @@
   "description": "A tiny getting started for a react project, with front-end built with parcel, and served through express.",
   "main": "index.js",
   "scripts": {
-    "build-watch": "parcel watch ./client/index.html",
-    "start-watch": "nodemon server/index.js",
-    "dev": "concurrently --kill-others \"npm run start-watch\" \"npm run build-watch\"",
-    "build": "parcel build ./client/index.html",
-    "start": "npm run build && node server/index.js",
+    "dev": "nodemon --watch server server/dev-server.js",
+    "dev2": "parcel --port 3000 watch client/index.html",
+    "dev3": "yarn dev && yarn dev2",
+    "build": "parcel build ./client/index.html --experimental-scope-hoisting --detailed-report --bundle-node-modules",
+    "start": "node server/server.js",
+    "verify": "yarn build && yarn start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,13 +22,25 @@
   "license": "MIT",
   "repository": "github:witchard/tutorial-react-parcel-express",
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-preact": "^2.0.0",
     "concurrently": "*",
     "nodemon": "*",
-    "parcel-bundler": "*"
+    "parcel": "^1.12.4",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.23.3",
+    "typescript": "^3.6.4"
   },
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "*",
-    "react": "*",
-    "react-dom": "*"
+    "preact": "^10.0.4",
+    "react-data-hooks": "=1.10.3",
+    "use-store": "^1.7.3"
+  },
+  "alias": {
+    "react": "./client/react-shim"
   }
 }
